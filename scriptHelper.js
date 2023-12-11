@@ -37,7 +37,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let cargoMassValid = validateInput(cargoLevel);
 
     const launchStatusDsp = document.getElementById("launchStatus");
-    const faultyItemsDsp = document.getElementById("faultyItems");
     const pilotStatusDsp = document.getElementById("pilotStatus");
     const copilotStatusDsp = document.getElementById("copilotStatus");
     const fuelStatusDsp = document.getElementById("fuelStatus");
@@ -99,22 +98,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
 async function myFetch() {
-    let planetsReturned;
+    let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json");
+    return await planetsReturned.json();
 
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json");
-    let data = await planetsReturned.json();
-
-    planetsReturned = data;
-    return planetsReturned;
 }
 
 
 function pickPlanet(planets) {
-    let randomIndex;
-    let thePlanet;
-    randomIndex = Math.floor(Math.random() * planets.length);
+    let randomIndex = Math.floor(Math.random() * planets.length);
+    return planets[randomIndex];
 
-    return thePlanet = planets[randomIndex];
 }
 
 
